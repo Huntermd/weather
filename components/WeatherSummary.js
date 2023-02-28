@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import heroImage from '../assets/Sunny.jpg'
-
+import {SizeConstants, ColorConstants, FontConstants} from '../GlobalStyles';
 export default function WeatherSummary() {
   return (
     <View style = {styles.heroContainer}>
@@ -19,7 +19,7 @@ export default function WeatherSummary() {
 const styles = StyleSheet.create({
     text:{
       width: '90%',
-        color: '#fff',
+        color: ColorConstants.normal ,
         fontSize: 24,
         fontWeight: 'bold',
         marginTop: 32,
@@ -38,13 +38,13 @@ const styles = StyleSheet.create({
         alignItems: 'center'
       },
       highTemp:{
-        color: 'white',
+        color: 'red',
         fontSize: 48,
         fontWeight: '100',
         marginRight: 8
       },
       lowTemp:{
-        color: 'white',
+        color: 'lightblue',
         fontSize: 18,
         fontWeight: '100'
       },
