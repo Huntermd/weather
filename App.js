@@ -1,12 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import {useFonts} from 'expo-font';
-
+import {SizeConstants, ColorConstants, FontConstants} from './GlobalStyles';
 import Icon from './weatherIcon';
-
+import data from './data';
 import WeatherDetail from './components/WeatherDetail';
 import WeatherHourly from './components/WeatherHourly';
 import WeatherSummary from './components/WeatherSummary';
+import { Hour } from './components/Hour';
+
+
+
+
 
 export default function App() {
 
@@ -23,13 +28,24 @@ if(!loaded){
     <ScrollView style={styles.container}>
       
       <WeatherSummary/>
-    <View>
-      <Icon name ="wi-fire" style={styles.icon}/>
-    </View>
-      <WeatherDetail/>
-
-      <WeatherHourly/>
-
+    
+    
+    <WeatherDetail />
+    
+    <Icon name ='wi-fire' style={styles.icon}/>
+   {/* <FlatList
+    horizontal
+    data ={data.hourly}
+    renderItem= {({item}) => <Hour hour={item}/>}
+    keyExtractor={(item, index) => index}
+    />*/}
+    {/*
+      data.hourly.map((hour) => {
+        return <Hour pop={hour.pop} />;
+      })*/
+    }
+      <WeatherHourly />
+      
       
       <StatusBar style="auto" />
     </ScrollView>
@@ -39,17 +55,32 @@ if(!loaded){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
-   //  alignItems: 'center',
-  //  justifyContent: 'center',
+    backgroundColor: ColorConstants.backgroundDark,
+    
+
   },
   text:{
-    color: '#fff'
+    color: ColorConstants.normal,
+    fontSize: 50,
+    marginTop: 10
+    
   },
   icon:{
     color: 'orange',
-    fontSize: 74,
-    //backgroundColor: 'grey'
+   
+    
   },
-
+ 
+  iconContain:{
+    width: '30%',
+    height: '20%',
+    backgroundColor: '#454545',
+    borderWidth: 4,
+    borderRadius: 20 ,
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
+    
+    
+    
+  }
 });
