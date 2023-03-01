@@ -32,7 +32,7 @@ if(!loaded){
     
     <WeatherDetail />
     
-    <Icon name ='wi-fire' style={styles.icon}/>
+    
    {/* <FlatList
     horizontal
     data ={data.hourly}
