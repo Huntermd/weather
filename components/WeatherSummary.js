@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Switch } from 'react-native'
 import React from 'react'
 import heroImage from '../assets/Sunny.jpg'
 import {SizeConstants, ColorConstants, FontConstants} from '../GlobalStyles';
@@ -7,26 +7,46 @@ import data from '../data';
 
 export default function WeatherSummary() {
 
-let windDirection;
-let deg= data.current.wind_deg;
+let windDirection = '';
+let d = data.current.wind_deg;
+switch (d) {
+  case ( d > 315 || d < 45):
+    windDirection = "North";
+    break;
+    case (d >= 45 && d < 135):
+      windDirection = "East";
+      break;
+      case (d >= 135 && d<225):
+        windDirection = "South";
+        break;
+      default:
+        windDirection = "West";
+}
 
-if(deg >(360-22.5) || deg < 22.5) windDirection = 'North';
-if(deg >22.5 && deg < 45) windDirection = 'North E';
+
+
+
+
 
   return (
     <View style = {styles.heroContainer}>
       <Text style= {styles.text}>Good Afternoon</Text>
       <Image source = {heroImage} style={styles.hero}/>
       <View style = {styles.TempContainer}>
-        <Text style = {styles.highTemp}>46{'\u00b0'}f</Text>
-        <Text style = {styles.lowTemp}>/33 {'\u00b0'}f</Text>
+        <Text style = {styles.highTemp}>{Math.round(data.daily[0].temp.max)}{'\u00b0'}F</Text>
+        <Text style = {styles.lowTemp}>/ {Math.round(data.daily[0].temp.min)} {'\u00b0'}F</Text>
         
       </View>
       <View>
-        <Text style={[styles.SumText, {fontSize: 30}]}>Huntington</Text>
-        <Text style={styles.SumText}> Today - {data.daily[0].weather[0].main} with a high near {Math.round(data.daily[0].temp.max)}.
-        Southwest wind around {Math.round(data.daily[0].wind_speed)} mph, with gust as high as {Math.round(data.daily[0].wind_gust)} mph.
-        </Text>
+      <Text style={[styles.SumText, {fontSize: 30}]}>Huntington</Text>
+        {data.current.weather[0].main === 'clear' ? 
+        (<Text style = {styles.SumText}>Clear skies today with a tempuature of {Math.round(data.current.temp)} {'\u00b0'}F</Text>) : 
+        (<Text style={styles.SumText}> At least partly cloudy skies today with a tempuature of {Math.round(data.current.temp)} {'\u00b0'}F</Text>)}
+       <Text style={styles.SumText}>Winds of {Math.round(data.current.wind_speed)} mph from the {windDirection}</Text>
+       
+       
+        
+        
         </View>
     </View>
     
