@@ -8,7 +8,7 @@ import WeatherDetail from './components/WeatherDetail';
 import WeatherHourly from './components/WeatherHourly';
 import WeatherSummary from './components/WeatherSummary';
 import { Hour } from './components/Hour';
-import { WeatherDaily } from './components/WeatherDaily';
+import  WeatherDaily  from './components/WeatherDaily';
 
 
 
@@ -47,7 +47,7 @@ if(!loaded){
     }
       <WeatherHourly />
 
-      <WeatherDaily/>
+      <WeatherDaily />
       
       
       <StatusBar style="auto" />
