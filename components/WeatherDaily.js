@@ -5,18 +5,27 @@ import data from '../data';
 
 export default function WeatherDaily() {
   return (
-    <View style={styles.Container}>
-        <Day  day={data.daily[0]}/>
-      <Day  day={data.daily[1]} />
-      <Day   day={data.daily[2]}/>
-      <Day  day={data.daily[3]} />
-      <Day  day={data.daily[4]} />
-    </View>
+   <View >
+    <Text style={styles.text}>Daily</Text>
+     <View style={styles.Container}>
+      
+      <Day  day={data.daily[0]} />
+    <Day  day={data.daily[1]}  />
+    <Day   day={data.daily[2]} />
+    <Day  day={data.daily[3]}  />
+    <Day  day={data.daily[4]}  />
+  </View>
+   </View>
   )
 }
 
 const styles = StyleSheet.create({
   Container:{
-    flexDirection: 'row'
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  },
+  text:{
+    color:'white'
   }
 })
