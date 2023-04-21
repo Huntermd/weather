@@ -7,7 +7,7 @@ import data from '../data';
 
 
 
-export default function WeatherDetail() {
+export default function WeatherDetail({data}) {
   return (
     
     <View >

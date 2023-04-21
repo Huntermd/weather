@@ -33,7 +33,7 @@ export default function Day({day}) {
 
 const styles = StyleSheet.create({
   Container:{
-    width: '17%' ,
+    width: '18%' ,
     height: 190 ,
     backgroundColor: ColorConstants.backgroundMedium,
     borderRadius: SizeConstants.borderRadius,

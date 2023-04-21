@@ -1,20 +1,40 @@
+import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import {useFonts} from 'expo-font';
 import {SizeConstants, ColorConstants, FontConstants} from './GlobalStyles';
 import Icon from './weatherIcon';
-import data from './data';
+// import data from './data';
 import WeatherDetail from './components/WeatherDetail';
 import WeatherHourly from './components/WeatherHourly';
 import WeatherSummary from './components/WeatherSummary';
 import { Hour } from './components/Hour';
 import  WeatherDaily  from './components/WeatherDaily';
-
+import Sun from './components/Sun';
+import axios from 'axios';
+import {WEATHER_API} from '@env';
+import Radar from './components/Radar';
 
 
 
 
 export default function App() {
+
+  const [data, setData] = useState(null);
+
+  useEffect(()=> {
+    
+    axios.get('https://api.openweathermap.org/data/3.0/onecall?lat=38.419&lon=-82.445&units=imperial&appid='+WEATHER_API).then((response)=> {
+    console.log(response)
+    setData(response.data)
+    })
+    .catch((error)=> {
+      console.log(error)
+    })
+
+
+
+  },[]);
 
 
 const [loaded] = useFonts(
@@ -25,13 +45,17 @@ if(!loaded){
   return null;
 }
 
+if (!data){
+  return null;
+}
+
   return (
     <ScrollView style={styles.container}>
       
-      <WeatherSummary/>
+      <WeatherSummary data={data}/>
     
     
-    <WeatherDetail />
+    <WeatherDetail data = {data} />
     
     
    {/* <FlatList
@@ -45,9 +69,13 @@ if(!loaded){
         return <Hour pop={hour.pop} />;
       })*/
     }
-      <WeatherHourly />
+      <WeatherHourly data = {data} />
 
-      <WeatherDaily />
+      <WeatherDaily data = {data}/>
+
+      <Sun Sun = {data.daily[0]} />
+
+      <Radar/>
       
       
       <StatusBar style="auto" />

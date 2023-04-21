@@ -16,6 +16,7 @@ const ColorConstants = {
 
    backgroundDark: '#333333',
    backgroundMed: '#666666', 
+   iconColor: 'darkblue'
     
 };
 

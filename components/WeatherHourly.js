@@ -3,7 +3,7 @@ import React from 'react'
 import {SizeConstants, ColorConstants, FontConstants} from '../GlobalStyles';
 import { Hour } from './Hour';
 import data from '../data';
-export default function WeatherHourly() {
+export default function WeatherHourly({data}) {
   return (
     <View>
       <Text style={styles.text}>Hourly</Text>

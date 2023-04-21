@@ -2,10 +2,10 @@ import { StyleSheet, Text, View, Image, Switch } from 'react-native'
 import React from 'react'
 import heroImage from '../assets/Sunny.jpg'
 import {SizeConstants, ColorConstants, FontConstants} from '../GlobalStyles';
-import data from '../data';
+// import data from '../data';
 
 
-export default function WeatherSummary() {
+export default function WeatherSummary({data}) {
 
 let windDirection = '';
 let d = data.current.wind_deg;

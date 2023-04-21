@@ -3,7 +3,7 @@ import React from 'react'
 import  Day  from './Day';
 import data from '../data';
 
-export default function WeatherDaily() {
+export default function WeatherDaily({data}) {
   return (
    <View >
     <Text style={styles.text}>Daily</Text>
